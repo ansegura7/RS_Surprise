@@ -13168,20 +13168,6 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load plotting libraries</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13191,7 +13177,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Path to dataset file</span>
@@ -13205,7 +13191,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read the data into a Surprise dataset</span>
@@ -13227,7 +13213,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use the famous SVD algorithm with default params</span>
@@ -13241,11 +13227,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run 5-fold cross-validation and print results</span>
-<span class="n">cv</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">measures</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;MAE&#39;</span><span class="p">],</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;MAE&#39;</span><span class="p">],</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13265,10 +13251,10 @@ div#notebook {
 <pre>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    0.9374  0.9323  0.9352  0.9448  0.9312  0.9362  0.0048  
-MAE (testset)     0.7387  0.7363  0.7357  0.7464  0.7318  0.7378  0.0049  
-Fit time          7.16    6.75    6.91    7.22    6.36    6.88    0.31    
-Test time         0.24    0.16    0.44    0.16    0.24    0.25    0.10    
+RMSE (testset)    0.9379  0.9411  0.9380  0.9306  0.9288  0.9353  0.0048  
+MAE (testset)     0.7366  0.7400  0.7409  0.7338  0.7334  0.7369  0.0031  
+Fit time          7.56    8.02    8.66    8.04    8.59    8.17    0.41    
+Test time         0.22    0.22    0.19    0.25    0.28    0.23    0.03    
 </pre>
 </div>
 </div>
@@ -13286,7 +13272,7 @@ Test time         0.24    0.16    0.44    0.16    0.24    0.25    0.10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Without real rating</span>
@@ -13307,7 +13293,7 @@ Test time         0.24    0.16    0.44    0.16    0.24    0.25    0.10
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 13         item: 181        r_ui = None   est = 4.62   {&#39;was_impossible&#39;: False}
+<pre>user: 13         item: 181        r_ui = None   est = 3.77   {&#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
@@ -13318,7 +13304,7 @@ Test time         0.24    0.16    0.44    0.16    0.24    0.25    0.10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># With real rating</span>
@@ -13339,7 +13325,7 @@ Test time         0.24    0.16    0.44    0.16    0.24    0.25    0.10
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 196        item: 302        r_ui = 4.00   est = 4.03   {&#39;was_impossible&#39;: False}
+<pre>user: 196        item: 302        r_ui = 4.00   est = 4.21   {&#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
