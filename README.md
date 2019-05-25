@@ -10,18 +10,20 @@ Project of a recommender system created with the Surprise framework.
 
 ## Examples
 <details>
-<summary>1. <a href="https://ansegura7.github.io/RS_Surprise/pages/SVD_Simple.html" >SVD Simple</a></summary>
+<summary>1. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_KNN.html" >RS with KNN</a></summary>
 - Model built from a plain text file<br>
-- The algorithm used is: Singular Value Decomposition (SVD)<br>
+- The algorithm used is: KNNBasic<br>
 - Model trained using the technique of cross validation (5 folds)<br>
 - The RMSE and MAE metrics were used to estimate the model error<br>
+- Type of filtering: collaborative<br>
 </details>
 <details>
-<summary>2. <a href="https://ansegura7.github.io/RS_Surprise/pages/SVD_Detailed.html" >SVD_Detailed</a></summary>
+<summary>2. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_SVD.html" >RS with SVD</a></summary>
 - Model built from a Pandas dataframe<br>
 - The algorithm used is: Singular Value Decomposition (SVD)<br>
 - Model trained using train and test datasets (80/20)<br>
 - The error of the model was estimated using the RMSE metric<br>
+- Type of filtering: collaborative<br>
 </details>
 
 ## License Type

@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>SVD_Simple</title>
+<title>RS_KNN</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13129,9 +13129,10 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Experiment-description">Experiment description<a class="anchor-link" href="#Experiment-description">&#182;</a></h2><ul>
 <li>Model built from a plain text file</li>
-<li>The algorithm used is: Singular Value Decomposition (SVD)</li>
+<li>The algorithm used is: KNNBasic</li>
 <li>Model trained using the technique of cross validation (5 folds)</li>
 <li>The RMSE and MAE metrics were used to estimate the model error</li>
+<li>Type of filtering: collaborative</li>
 </ul>
 
 </div>
@@ -13157,7 +13158,7 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load Surprise libraries</span>
-<span class="kn">from</span> <span class="nn">surprise</span> <span class="k">import</span> <span class="n">SVD</span>
+<span class="kn">from</span> <span class="nn">surprise</span> <span class="k">import</span> <span class="n">KNNBasic</span>
 <span class="kn">from</span> <span class="nn">surprise</span> <span class="k">import</span> <span class="n">Reader</span>
 <span class="kn">from</span> <span class="nn">surprise</span> <span class="k">import</span> <span class="n">Dataset</span>
 <span class="kn">from</span> <span class="nn">surprise.model_selection</span> <span class="k">import</span> <span class="n">cross_validate</span>
@@ -13216,8 +13217,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use the famous SVD algorithm with default params</span>
-<span class="n">algo</span> <span class="o">=</span> <span class="n">SVD</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use k-NN inspired algorithms</span>
+<span class="n">kk</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">algo</span> <span class="o">=</span> <span class="n">KNNBasic</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="n">kk</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13248,13 +13250,23 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
+<pre>Computing the msd similarity matrix...
+Done computing similarity matrix.
+Computing the msd similarity matrix...
+Done computing similarity matrix.
+Computing the msd similarity matrix...
+Done computing similarity matrix.
+Computing the msd similarity matrix...
+Done computing similarity matrix.
+Computing the msd similarity matrix...
+Done computing similarity matrix.
+Evaluating RMSE, MAE of algorithm KNNBasic on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    0.9288  0.9371  0.9403  0.9434  0.9292  0.9358  0.0059  
-MAE (testset)     0.7316  0.7386  0.7423  0.7410  0.7313  0.7369  0.0046  
-Fit time          7.35    6.87    7.03    7.44    7.07    7.15    0.21    
-Test time         0.23    0.22    0.17    0.28    0.20    0.22    0.04    
+RMSE (testset)    0.9804  0.9862  0.9805  0.9816  0.9773  0.9812  0.0029  
+MAE (testset)     0.7724  0.7790  0.7770  0.7759  0.7729  0.7754  0.0025  
+Fit time          0.62    0.64    0.77    0.67    0.70    0.68    0.05    
+Test time         4.76    6.51    6.05    5.75    6.71    5.96    0.69    
 </pre>
 </div>
 </div>
@@ -13293,7 +13305,7 @@ Test time         0.23    0.22    0.17    0.28    0.20    0.22    0.04
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 13         item: 181        r_ui = None   est = 3.90   {&#39;was_impossible&#39;: False}
+<pre>user: 13         item: 181        r_ui = None   est = 4.32   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
@@ -13325,7 +13337,7 @@ Test time         0.23    0.22    0.17    0.28    0.20    0.22    0.04
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 196        item: 302        r_ui = 4.00   est = 4.08   {&#39;was_impossible&#39;: False}
+<pre>user: 196        item: 302        r_ui = 4.00   est = 4.04   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
