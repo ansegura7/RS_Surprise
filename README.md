@@ -10,6 +10,7 @@ Project of a recommender system created with the Surprise framework.
 
 ## Examples
 1. <a href="https://ansegura7.github.io/RS_Surprise/pages/SVD_Simple.html" >SVD Simple</a>
+2. <a href="https://ansegura7.github.io/RS_Surprise/pages/SVD_Detailed.html" >SVD_Detailed</a>
 
 ## License Type
 This project is licensed under the terms of the MIT license.

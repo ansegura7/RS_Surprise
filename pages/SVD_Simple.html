@@ -13251,10 +13251,10 @@ div#notebook {
 <pre>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    0.9379  0.9411  0.9380  0.9306  0.9288  0.9353  0.0048  
-MAE (testset)     0.7366  0.7400  0.7409  0.7338  0.7334  0.7369  0.0031  
-Fit time          7.56    8.02    8.66    8.04    8.59    8.17    0.41    
-Test time         0.22    0.22    0.19    0.25    0.28    0.23    0.03    
+RMSE (testset)    0.9288  0.9371  0.9403  0.9434  0.9292  0.9358  0.0059  
+MAE (testset)     0.7316  0.7386  0.7423  0.7410  0.7313  0.7369  0.0046  
+Fit time          7.35    6.87    7.03    7.44    7.07    7.15    0.21    
+Test time         0.23    0.22    0.17    0.28    0.20    0.22    0.04    
 </pre>
 </div>
 </div>
@@ -13276,7 +13276,7 @@ Test time         0.22    0.22    0.19    0.25    0.28    0.23    0.03
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Without real rating</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span> <span class="o">=</span> <span class="s1">&#39;13&#39;</span><span class="p">,</span> <span class="n">iid</span> <span class="o">=</span> <span class="s1">&#39;181&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span> <span class="o">=</span> <span class="s1">&#39;13&#39;</span><span class="p">,</span> <span class="n">iid</span> <span class="o">=</span> <span class="s1">&#39;181&#39;</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13293,7 +13293,7 @@ Test time         0.22    0.22    0.19    0.25    0.28    0.23    0.03
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 13         item: 181        r_ui = None   est = 3.77   {&#39;was_impossible&#39;: False}
+<pre>user: 13         item: 181        r_ui = None   est = 3.90   {&#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
@@ -13325,7 +13325,7 @@ Test time         0.22    0.22    0.19    0.25    0.28    0.23    0.03
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 196        item: 302        r_ui = 4.00   est = 4.21   {&#39;was_impossible&#39;: False}
+<pre>user: 196        item: 302        r_ui = 4.00   est = 4.08   {&#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
