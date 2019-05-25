@@ -13145,6 +13145,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the Pandas libraries</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">io</span>
 </pre></div>
 
     </div>
@@ -13263,10 +13264,10 @@ Done computing similarity matrix.
 Evaluating RMSE, MAE of algorithm KNNBasic on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    0.9804  0.9862  0.9805  0.9816  0.9773  0.9812  0.0029  
-MAE (testset)     0.7724  0.7790  0.7770  0.7759  0.7729  0.7754  0.0025  
-Fit time          0.62    0.64    0.77    0.67    0.70    0.68    0.05    
-Test time         4.76    6.51    6.05    5.75    6.71    5.96    0.69    
+RMSE (testset)    0.9797  0.9879  0.9828  0.9768  0.9810  0.9816  0.0037  
+MAE (testset)     0.7737  0.7785  0.7783  0.7707  0.7777  0.7758  0.0031  
+Fit time          0.68    0.67    0.67    0.85    0.82    0.74    0.08    
+Test time         4.59    5.29    4.98    5.43    5.68    5.19    0.38    
 </pre>
 </div>
 </div>
@@ -13305,7 +13306,7 @@ Test time         4.76    6.51    6.05    5.75    6.71    5.96    0.69
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 13         item: 181        r_ui = None   est = 4.32   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
+<pre>user: 13         item: 181        r_ui = None   est = 4.30   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
@@ -13337,7 +13338,167 @@ Test time         4.76    6.51    6.05    5.75    6.71    5.96    0.69
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 196        item: 302        r_ui = 4.00   est = 4.04   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
+<pre>user: 196        item: 302        r_ui = 4.00   est = 4.21   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Get-the-k-nearest-neighbors-of-a-item">4. Get the k nearest neighbors of a item<a class="anchor-link" href="#4.-Get-the-k-nearest-neighbors-of-a-item">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read the u.item file from MovieLens 100-k dataset and return two</span>
+<span class="c1">#    mappings to convert raw ids into movie names and movie names into raw ids</span>
+<span class="k">def</span> <span class="nf">read_item_names</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">rid_to_name</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">name_to_rid</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;ISO-8859-1&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+            <span class="n">rid_to_name</span><span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">name_to_rid</span><span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">rid_to_name</span><span class="p">,</span> <span class="n">name_to_rid</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read the mappings raw id &lt;-&gt; movie name</span>
+<span class="n">item_filepath</span> <span class="o">=</span> <span class="s1">&#39;../data/u.item&#39;</span>
+<span class="n">rid_to_name</span><span class="p">,</span> <span class="n">name_to_rid</span> <span class="o">=</span> <span class="n">read_item_names</span><span class="p">(</span><span class="n">item_filepath</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Retrieve inner id of the movie Toy Story</span>
+<span class="n">toy_story_raw_id</span> <span class="o">=</span> <span class="n">name_to_rid</span><span class="p">[</span><span class="s1">&#39;Toy Story (1995)&#39;</span><span class="p">]</span>
+<span class="n">toy_story_inner_id</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">trainset</span><span class="o">.</span><span class="n">to_inner_iid</span><span class="p">(</span><span class="n">toy_story_raw_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Toy Story (1995):&#39;</span><span class="p">,</span> <span class="n">toy_story_inner_id</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Toy Story (1995): 283
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Retrieve inner ids of the nearest neighbors of Toy Story</span>
+<span class="n">toy_story_neighbors</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">get_neighbors</span><span class="p">(</span><span class="n">toy_story_inner_id</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">toy_story_neighbors</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[142, 166, 214, 254, 417, 458, 567, 597, 636, 641]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The 10 nearest neighbors of Toy Story are:</span>
+<span class="k">for</span> <span class="n">inner_id</span> <span class="ow">in</span> <span class="n">toy_story_neighbors</span><span class="p">:</span>
+    <span class="n">raw_id</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">trainset</span><span class="o">.</span><span class="n">to_raw_iid</span><span class="p">(</span><span class="n">inner_id</span><span class="p">)</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="n">rid_to_name</span><span class="p">[</span><span class="n">raw_id</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">raw_id</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">movie</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>346 - Jackie Brown (1997)
+416 - Old Yeller (1957)
+90 - So I Married an Axe Murderer (1993)
+298 - Face/Off (1997)
+8 - Babe (1995)
+193 - Right Stuff, The (1983)
+485 - My Fair Lady (1964)
+223 - Sling Blade (1996)
+630 - Great Race, The (1965)
+99 - Snow White and the Seven Dwarfs (1937)
 </pre>
 </div>
 </div>
