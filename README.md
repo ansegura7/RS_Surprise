@@ -3,7 +3,7 @@
 - **Created on May 23, 2019**
 
 ## Overview
-Project of a recommender system created with the Surprise framework.
+Project of a recommender system created with the Surprise framework. With a collaborative filtering approach, different algorithms are explored, such as KNN or SVD.
 
 ## Python Dependencies
 - conda install -c conda-forge scikit-surprise 
