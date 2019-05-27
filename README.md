@@ -28,8 +28,8 @@ Project of a recommender system created with the Surprise framework. With a coll
 Any kind of feedback/criticism would be greatly appreciated (algorithm design, documentation, improvement ideas, spelling mistakes, etc...).
 
 ## Authors
-- **Created by Andrés Segura Tinoco**
-- **Created on May 23, 2019**
+- Created by Andrés Segura Tinoco
+- Created on May 23, 2019
 
 ## License
 This project is licensed under the terms of the MIT license.
