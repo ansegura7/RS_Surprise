@@ -24,7 +24,7 @@ Project of a recommender system created with the Surprise framework. With a coll
 - Type of filtering: collaborative<br>
 </details>
 <details>
-<summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/SR_SVD_Tune.html" >Tune RS (SVD)</a></summary>
+<summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/SR_SVD_Tune.html" >Tune model (SVD)</a></summary>
 </details>
 
 ## Contributing and Feedback
