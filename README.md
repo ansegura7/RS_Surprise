@@ -23,7 +23,7 @@ Project of a recommender system created with the Surprise framework. With a coll
 - The algorithm used is: Singular Value Decomposition (SVD)<br>
 - Model trained using train and test datasets (80/20)<br>
 - The error of the model was estimated using the RMSE metric<br>
-- Type of filtering: collaborative<br>
+- Type of filtering: User-based collaborative<br>
 </details>
 
 ## License Type
