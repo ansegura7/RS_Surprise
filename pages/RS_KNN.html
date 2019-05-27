@@ -13215,6 +13215,21 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A basic collaborative filtering algorithm. The prediction $\hat{r}_{ui}$ is set as:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$ \hat{r}_{ui} = \frac{ \sum_{v \in N_{i}^{k}(u)} {sim(u,v) . r_{vi}} }{ \sum_{v \in N_{i}^{k}(u)} {sim(u,v) } } \tag{1} $$
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
@@ -13222,7 +13237,8 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use k-NN inspired algorithms</span>
 <span class="n">kk</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">algo</span> <span class="o">=</span> <span class="n">KNNBasic</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="n">kk</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">sim_options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="s1">&#39;user_based&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="n">algo</span> <span class="o">=</span> <span class="n">KNNBasic</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="n">kk</span><span class="p">,</span> <span class="n">sim_options</span> <span class="o">=</span> <span class="n">sim_options</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13253,23 +13269,23 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Computing the msd similarity matrix...
+<pre>Computing the cosine similarity matrix...
 Done computing similarity matrix.
-Computing the msd similarity matrix...
+Computing the cosine similarity matrix...
 Done computing similarity matrix.
-Computing the msd similarity matrix...
+Computing the cosine similarity matrix...
 Done computing similarity matrix.
-Computing the msd similarity matrix...
+Computing the cosine similarity matrix...
 Done computing similarity matrix.
-Computing the msd similarity matrix...
+Computing the cosine similarity matrix...
 Done computing similarity matrix.
 Evaluating RMSE, MAE of algorithm KNNBasic on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    0.9824  0.9819  0.9809  0.9833  0.9742  0.9806  0.0033  
-MAE (testset)     0.7778  0.7750  0.7755  0.7769  0.7701  0.7751  0.0027  
-Fit time          0.65    0.67    0.72    0.96    0.71    0.74    0.11    
-Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30    
+RMSE (testset)    1.0138  1.0207  1.0097  1.0247  1.0127  1.0163  0.0055  
+MAE (testset)     0.8000  0.8095  0.7967  0.8100  0.8038  0.8040  0.0052  
+Fit time          3.14    2.26    2.23    2.26    2.23    2.42    0.36    
+Test time         5.74    5.01    4.97    5.02    4.99    5.15    0.30    
 </pre>
 </div>
 </div>
@@ -13340,7 +13356,7 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>user: 196        item: 302        r_ui = 4.00   est = 4.15   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
+<pre>user: 196        item: 302        r_ui = 4.00   est = 4.14   {&#39;actual_k&#39;: 50, &#39;was_impossible&#39;: False}
 </pre>
 </div>
 </div>
@@ -13352,7 +13368,7 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="4.-Get-the-k-nearest-neighbors-of-a-item">4. Get the k nearest neighbors of a item<a class="anchor-link" href="#4.-Get-the-k-nearest-neighbors-of-a-item">&#182;</a></h2>
+<h2 id="4.-Get-the-k-nearest-neighbors-of-an-item.">4. Get the k nearest neighbors of an item.<a class="anchor-link" href="#4.-Get-the-k-nearest-neighbors-of-an-item.">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13400,10 +13416,24 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Target movie</span>
+<span class="n">target_movie</span> <span class="o">=</span> <span class="s1">&#39;Toy Story (1995)&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Retrieve inner id of the movie Toy Story</span>
-<span class="n">toy_story_raw_id</span> <span class="o">=</span> <span class="n">name_to_rid</span><span class="p">[</span><span class="s1">&#39;Toy Story (1995)&#39;</span><span class="p">]</span>
+<span class="n">toy_story_raw_id</span> <span class="o">=</span> <span class="n">name_to_rid</span><span class="p">[</span><span class="n">target_movie</span><span class="p">]</span>
 <span class="n">toy_story_inner_id</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">trainset</span><span class="o">.</span><span class="n">to_inner_iid</span><span class="p">(</span><span class="n">toy_story_raw_id</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Toy Story (1995):&#39;</span><span class="p">,</span> <span class="n">toy_story_inner_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target_movie</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">toy_story_inner_id</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13420,7 +13450,7 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Toy Story (1995): 120
+<pre>Toy Story (1995): 316
 </pre>
 </div>
 </div>
@@ -13431,7 +13461,7 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Retrieve inner ids of the nearest neighbors of Toy Story</span>
@@ -13449,13 +13479,13 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[227, 294, 342, 356, 482, 655, 754, 791, 724, 834]</pre>
+<pre>[31, 69, 100, 131, 139, 143, 145, 166, 175, 243]</pre>
 </div>
 
 </div>
@@ -13466,10 +13496,12 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The 10 nearest neighbors of Toy Story are:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The movies most similar to &#39;&quot;</span> <span class="o">+</span> <span class="n">target_movie</span> <span class="o">+</span> <span class="s2">&quot; are:&quot;</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">inner_id</span> <span class="ow">in</span> <span class="n">toy_story_neighbors</span><span class="p">:</span>
     <span class="n">raw_id</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">trainset</span><span class="o">.</span><span class="n">to_raw_iid</span><span class="p">(</span><span class="n">inner_id</span><span class="p">)</span>
     <span class="n">movie</span> <span class="o">=</span> <span class="n">rid_to_name</span><span class="p">[</span><span class="n">raw_id</span><span class="p">]</span>
@@ -13490,16 +13522,17 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>27 - Bad Boys (1995)
-592 - True Crime (1995)
-1074 - Reality Bites (1994)
-255 - My Best Friend&#39;s Wedding (1997)
-539 - Mouse Hunt (1997)
-1118 - Up in Smoke (1978)
-26 - Brothers McMullen, The (1995)
-486 - Sabrina (1954)
-1316 - Horse Whisperer, The (1998)
-212 - Unbearable Lightness of Being, The (1988)
+<pre>The movies most similar to &#39;Toy Story (1995) are:
+510 - Magnificent Seven, The (1954)
+22 - Braveheart (1995)
+811 - Thirty-Two Short Films About Glenn Gould (1993)
+63 - Santa Clause, The (1994)
+919 - City of Lost Children, The (1995)
+678 - Volcano (1997)
+71 - Lion King, The (1994)
+760 - Screamers (1995)
+319 - Everyone Says I Love You (1996)
+685 - Executive Decision (1996)
 </pre>
 </div>
 </div>
@@ -13517,7 +13550,7 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Return the top-N recommendation for each user from a set of predictions.</span>
@@ -13543,7 +13576,7 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create train_set and test_set</span>
@@ -13572,22 +13605,22 @@ Test time         4.99    5.61    11.32   5.97    6.00    6.78    2.30
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Computing the msd similarity matrix...
+<pre>Computing the cosine similarity matrix...
 Done computing similarity matrix.
-RMSE: 0.9169
+RMSE: 0.9255
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.9168591886191365</pre>
+<pre>0.9254759689787458</pre>
 </div>
 
 </div>
@@ -13598,7 +13631,7 @@ RMSE: 0.9169
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Than predict ratings for all pairs (u, i) that are NOT in the training set</span>
@@ -13613,12 +13646,13 @@ RMSE: 0.9169
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Print the recommended items for a specific user</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># User raw Id</span>
 <span class="n">uid_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;196&#39;</span><span class="p">]</span>
 
+<span class="c1"># Print the recommended items for a specific user</span>
 <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">user_ratings</span> <span class="ow">in</span> <span class="n">top_pred</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uid_list</span><span class="p">:</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">iid</span><span class="p">,</span> <span class="n">rating</span><span class="p">)</span> <span class="ow">in</span> <span class="n">user_ratings</span><span class="p">:</span>
@@ -13644,12 +13678,12 @@ RMSE: 0.9169
 Movie: 1500 - Santa with Muscles (1996) , rating: 5
 Movie: 814 - Great Day in Harlem, A (1994) , rating: 5
 Movie: 1536 - Aiqing wansui (1994) , rating: 5
+Movie: 1293 - Star Kid (1997) , rating: 5
 Movie: 1599 - Someone Else&#39;s America (1995) , rating: 5
 Movie: 1653 - Entertaining Angels: The Dorothy Day Story (1996) , rating: 5
 Movie: 1467 - Saint of Fort Washington, The (1993) , rating: 5
 Movie: 1122 - They Made Me a Criminal (1939) , rating: 5
 Movie: 1201 - Marlene Dietrich: Shadow and Light (1996)  , rating: 5
-Movie: 1293 - Star Kid (1997) , rating: 4.999999999999999
 </pre>
 </div>
 </div>
