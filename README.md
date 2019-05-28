@@ -25,6 +25,9 @@ Project of a recommender system created with the Surprise framework. With a coll
 </details>
 <details>
 <summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/SR_SVD_Tune.html" >Tune model (SVD)</a></summary>
+- Model tuning: manual<br>
+- Model tuning: automatic<br>
+- Compute precision@k and recall@k<br>
 </details>
 
 ## Contributing and Feedback
