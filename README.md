@@ -9,25 +9,31 @@ Project of a recommender system created with the Surprise framework. With a coll
 ## Examples
 <details>
 <summary>1. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_KNN.html" >RS with KNN</a></summary>
-- Model built from a plain text file<br>
-- The algorithm used is: KNNBasic<br>
-- Model trained using the technique of cross validation (5 folds)<br>
-- The RMSE and MAE metrics were used to estimate the model error<br>
-- Type of filtering: user-based collaborative<br>
+<ul>
+	<li>Model built from a plain text file</li>
+	<li>The algorithm used is: KNNBasic</li>
+	<li>Model trained using the technique of cross validation (5 folds)</li>
+	<li>The RMSE and MAE metrics were used to estimate the model error</li>
+	<li>Type of filtering: user-based collaborative</li>
+</ul>
 </details>
 <details>
 <summary>2. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_SVD.html" >RS with SVD</a></summary>
-- Model built from a Pandas dataframe<br>
-- The algorithm used is: Singular Value Decomposition (SVD)<br>
-- Model trained using train and test datasets (80/20)<br>
-- The error of the model was estimated using the RMSE metric<br>
-- Type of filtering: collaborative<br>
+<ul>
+	<li>Model built from a Pandas dataframe</li>
+	<li>The algorithm used is: Singular Value Decomposition (SVD)</li>
+	<li>Model trained using train and test datasets (80/20)</li>
+	<li>The error of the model was estimated using the RMSE metric</li>
+	<li>Type of filtering: collaborative</li>
+</ul>
 </details>
 <details>
 <summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/SR_SVD_Tune.html" >Tune model (SVD)</a></summary>
-- Model tuning: manual<br>
-- Model tuning: automatic<br>
-- Compute precision@k and recall@k<br>
+<ul>
+	<li>Model tuning: manual</li>
+	<li>Model tuning: automatic</li>
+	<li>Compute precision@k and recall@k</li>
+</ul>
 </details>
 
 ## Contributing and Feedback
