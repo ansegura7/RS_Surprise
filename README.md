@@ -44,7 +44,7 @@ This data set consists of:
 - Each user has rated at least 20 movies. 
 - Simple demographic info for the users (age, gender, occupation, zip)
 
-Table: **u.item**
+Table format: **u.data**
 
 | user id | item id | rating | timestamp |
 | -- | -- | -- | -- |
@@ -54,7 +54,7 @@ Table: **u.item**
 | 244 | 51 | 2 | 880606923 |
 | 166 | 346 | 1 | 886397596 |
 
-Table: **u.item**
+Table format: **u.item**
 
 | movie id | movie title | release date | IMDb URL |
 | -- | -- | -- | -- |
@@ -64,7 +64,7 @@ Table: **u.item**
 | 4 | Get Shorty (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?Get%20Shorty%20(1995) |
 | 5 | Copycat (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?Copycat%20(1995) |
 
-Table: **u.user**
+Table format: **u.user**
 
 | user id | age | gender | occupation | zip code |
 | -- | -- | -- | -- | -- |
