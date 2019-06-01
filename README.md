@@ -1,10 +1,5 @@
 # Recommender Systems with Surprise
-Project of a recommender system created with the Surprise framework. With a collaborative filtering approach, different algorithms are explored, such as KNN or SVD.
-
-## Python Dependencies
-```
-  conda install -c conda-forge scikit-surprise 
-```
+Project with examples of different recommendation system created with the <a href='http://surpriselib.com/' target='_blank'>Surprise</a> framework. With a collaborative filtering approach, different algorithms are explored, such as KNN or SVD.
 
 ## Examples
 <details>
@@ -75,6 +70,11 @@ Table format: **u.user**
 | 5 | 33 | F | other | 15213 |
 
 Permalink: https://grouplens.org/datasets/movielens/100k/
+
+## Python Dependencies
+```
+  conda install -c conda-forge scikit-surprise 
+```
 
 ## Contributing and Feedback
 Any kind of feedback/criticism would be greatly appreciated (algorithm design, documentation, improvement ideas, spelling mistakes, etc...).
