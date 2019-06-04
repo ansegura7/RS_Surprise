@@ -23,7 +23,7 @@ Project with examples of different recommendation system created with the <a hre
 </ul>
 </details>
 <details>
-<summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/SR_SVD_Tune.html" >Tune model (SVD)</a></summary>
+<summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_SVD_Tune.html" >Tune model (SVD)</a></summary>
 <ul>
 	<li>Model tuning: manual</li>
 	<li>Model tuning: automatic</li>
