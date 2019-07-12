@@ -2,7 +2,7 @@
 Project with examples of different recommendation system created with the <a href='http://surpriselib.com/' target='_blank'>Surprise</a> framework. With a collaborative filtering approach, different algorithms are explored, such as KNN or SVD.
 
 ## Examples
-<details>
+<details open>
 <summary>1. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_KNN.html" >RS with KNN</a></summary>
 <ul>
 	<li>Model built from a plain text file</li>
