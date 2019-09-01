@@ -72,7 +72,7 @@ Table format: **u.user**
 <a href="https://grouplens.org/datasets/movielens/100k/" target="_blank">Permalink</a>
 
 ## Python Dependencies
-```
+``` console
   conda install -c conda-forge scikit-surprise 
 ```
 
