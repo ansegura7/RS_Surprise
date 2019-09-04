@@ -1,2 +1,5 @@
 title: A Recommender Systems with Surprise
+description: Recommendation system with collaborative filtering created with Surprise
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-cayman
