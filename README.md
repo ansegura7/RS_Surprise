@@ -1,5 +1,5 @@
 # Recommender Systems with Surprise
-Project with examples of different recommendation system created with the <a href='http://surpriselib.com/' target='_blank'>Surprise</a> framework. With a collaborative filtering approach, different algorithms are explored, such as KNN or SVD.
+Project with examples of different recommender systems created with the <a href='http://surpriselib.com/' target='_blank'>Surprise</a> framework. Different algorithms (with a collaborative filtering approach) are explored, such as KNN or SVD.
 
 ## Examples
 <details open>
@@ -12,7 +12,7 @@ Project with examples of different recommendation system created with the <a hre
 	<li>Type of filtering: user-based collaborative</li>
 </ul>
 </details>
-<details>
+<details open>
 <summary>2. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_SVD.html" >RS with SVD</a></summary>
 <ul>
 	<li>Model built from a Pandas dataframe</li>
@@ -22,7 +22,7 @@ Project with examples of different recommendation system created with the <a hre
 	<li>Type of filtering: collaborative</li>
 </ul>
 </details>
-<details>
+<details open>
 <summary>3. <a href="https://ansegura7.github.io/RS_Surprise/pages/RS_SVD_Tune.html" >Tune model (SVD)</a></summary>
 <ul>
 	<li>Model tuning: manual</li>
@@ -32,7 +32,7 @@ Project with examples of different recommendation system created with the <a hre
 </details>
 
 ## Data
-MovieLens data sets were collected by the GroupLens Research Project at the University of Minnesota.
+MovieLens datasets were collected by the GroupLens Research Project at the University of Minnesota.
  
 This data set consists of:
 - 100,000 ratings (1-5) from 943 users on 1682 movies. 
@@ -42,32 +42,32 @@ This data set consists of:
 Table format: **u.data**
 
 | user id | item id | rating | timestamp |
-| -- | -- | -- | -- |
-| 196 | 242 | 3 | 881250949 |
-| 186 | 302 | 3 | 891717742 |
-| 22 | 377 | 1 | 878887116 |
-| 244 | 51 | 2 | 880606923 |
-| 166 | 346 | 1 | 886397596 |
+| --      | --      | --     | --        |
+| 196     | 242     | 3      | 881250949 |
+| 186     | 302     | 3      | 891717742 |
+| 22      | 377     | 1      | 878887116 |
+| 244     | 51      | 2      | 880606923 |
+| 166     | 346     | 1      | 886397596 |
 
 Table format: **u.item**
 
-| movie id | movie title | release date | IMDb URL |
-| -- | -- | -- | -- |
-| 1 | Toy Story (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?Toy%20Story%20(1995) |
-| 2 | GoldenEye (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?GoldenEye%20(1995) |
-| 3 | Four Rooms (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?Four%20Rooms%20(1995) |
-| 4 | Get Shorty (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?Get%20Shorty%20(1995) |
-| 5 | Copycat (1995) | 01-Jan-1995 | http://us.imdb.com/M/title-exact?Copycat%20(1995) |
+| movie id | movie title       | release date | IMDb URL                                               |
+| --       | --                | --           | --                                                     |
+| 1        | Toy Story (1995)  | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Toy%20Story%20(1995)  |
+| 2        | GoldenEye (1995)  | 01-Jan-1995  | http://us.imdb.com/M/title-exact?GoldenEye%20(1995)    |
+| 3        | Four Rooms (1995) | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Four%20Rooms%20(1995) |
+| 4        | Get Shorty (1995) | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Get%20Shorty%20(1995) |
+| 5        | Copycat (1995)    | 01-Jan-1995  | http://us.imdb.com/M/title-exact?Copycat%20(1995)      |
 
 Table format: **u.user**
 
 | user id | age | gender | occupation | zip code |
-| -- | -- | -- | -- | -- |
-| 1 | 24 | M | technician | 85711 |
-| 2 | 53 | F | other | 94043 |
-| 3 | 23 | M | writer | 32067 |
-| 4 | 24 | M | technician | 43537 |
-| 5 | 33 | F | other | 15213 |
+| --      | --  | --     | --         | --       |
+| 1       | 24  | M      | technician | 85711    |
+| 2       | 53  | F      | other      | 94043    |
+| 3       | 23  | M      | writer     | 32067    |
+| 4       | 24  | M      | technician | 43537    |
+| 5       | 33  | F      | other      | 15213    |
 
 <a href="https://grouplens.org/datasets/movielens/100k/" target="_blank">Permalink</a>
 
