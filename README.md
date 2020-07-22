@@ -69,7 +69,7 @@ Table format: **u.user**
 | 4       | 24  | M      | technician | 43537    |
 | 5       | 33  | F      | other      | 15213    |
 
-<a href="https://grouplens.org/datasets/movielens/100k/" target="_blank">Permalink</a>
+You can see the original dataset <a href="https://grouplens.org/datasets/movielens/100k/" target="_blank">here</a>
 
 ## Python Dependencies
 ``` console
